@@ -21,9 +21,11 @@ BingoGame::~BingoGame()
 
     }
     */
+}
 
-
-
+void BingoGame::assignCallerToBingoGame(Caller* c)
+{
+    callerPtr = c;
 }
 
 void BingoGame::addCardToGame(BingoCard* bCard)
@@ -48,14 +50,16 @@ and checking if it won on that round.
 BingoGame then 'asks' each BingoCard if it was a winner. If there are winners, their BingoCards
 are printed and the game ends.
 */
-void playRound()
+void BingoGame::playRound()
 {
-
+    callerPtr->generateCurrentRoundValue();
 
 
 }
 
-int checkForWin()
+int BingoGame::checkForWin()
 {
+
+    return 1;
 
 }
