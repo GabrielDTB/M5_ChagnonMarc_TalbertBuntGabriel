@@ -63,7 +63,9 @@ void BingoGame::playRound()
     // BingoGame displays the Caller's number
 
     // BingoGame iterates over each BingoCard in cardsInPlay, and calls each card's displayCard method
-
+    for (BingoCard* bCard : cardsInPlay) {
+        bCard->markPosition(getCurrentRoundValue());
+    }
     // 
 
 }

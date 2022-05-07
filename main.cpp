@@ -23,8 +23,16 @@ int main() {
     BingoCard bcard2(&game1);
     BingoCard bcard3(&game1);
 
-    // cout << "\nchecking size of vector: " << game1.numCardsInPlay;
+    // round for practice
+    cout << "\nRound 1.";
+    game1.playRound();
     cout << game1.checkForWin();
+    // print cards each round... also i think we need to "mark" the cards, maybe changing the tiles to 0 like she suggested?
+
+    cout << "\nRound 2.";
+    game1.playRound();
+    cout << game1.checkForWin();
+
     /*
     for (int i = 0; i < 10; i++) {
         cout << "\nplaying round " << (i + 1) << ".\n";

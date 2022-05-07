@@ -23,7 +23,6 @@ class BingoGame
         friend void Caller::setCurrentRoundValue();                     // friend function allowing Caller to set currentRoundVal
         int getCurrentRoundValue();                                     // return current round value (which was updated by Caller)
         void playRound();                                               // sets in motion a round, described in greater detail in BingoGame.cpp
-        void displayAllBingoCards();                                    // iterates over each BingoCard to display
         int checkForWin();                                              // returns 1 if any of the associated BingoCards are winners
 
 };
