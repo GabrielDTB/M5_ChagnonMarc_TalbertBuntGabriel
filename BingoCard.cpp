@@ -7,22 +7,22 @@
 
 BingoCard::BingoCard()
 {
-    short keyBuffer[5];
+    unsigned int keyBuffer[5];
     // Generate and assign all the bingo keys
-    for (short column = 0; column < 5; column++)
+    for (unsigned int column = 0; column < 5; column++)
     {
         // Generate a full column of keys
-        for (short &key: keyBuffer)
+        for (unsigned int &key: keyBuffer)
         {
             key = (rand() % 15 + 1) + (15 * column);
         }
         // Insert a column of keys in ascending numerical order
-        for (short row = 0; row < 5; row++)
+        for (unsigned int row = 0; row < 5; row++)
         {
-            short smallest = 76;
-            short smallestIndex;
+            unsigned int smallest = 76;
+            unsigned int smallestIndex;
             // Find the smallest key remaining in the buffer
-            for (short index = 0; index < 5; index++)
+            for (unsigned int index = 0; index < 5; index++)
             {
                 if (keyBuffer[index] != 0 & keyBuffer[index] < smallest)
                 {
@@ -38,13 +38,46 @@ BingoCard::BingoCard()
     cardKeys[2][2] = 0;
 }
 
-BingoCard::BingoCard(const short cardArray[5][5])
+BingoCard::BingoCard(const unsigned int cardArray[5][5])
 {
-    for (short column = 0; column < 5; column++)
+    for (unsigned int column = 0; column < 5; column++)
     {
-        for (short row = 0; row < 5; row++)
+        for (unsigned int row = 0; row < 5; row++)
         {
             cardKeys[column][row] = cardArray[column][row];
         }
     }
+}
+
+unsigned int BingoCard::getClearedLines() const
+{
+    unsigned int clearedLines = 0;
+    for (const unsigned int &tally: rowTallies)
+    {
+        if (tally == 5) clearedLines++;
+    }
+    for (const unsigned int &tally: columnTallies)
+    {
+        if (tally == 5) clearedLines++;
+    }
+    for (const unsigned int &tally: diagonalTallies)
+    {
+        if (tally == 5) clearedLines++;
+    }
+    return clearedLines;
+}
+
+bool BingoCard::searchForValue(unsigned int value)
+{
+    unsigned int column = (value - 1) / 15; // 1-15 will give 0, 16-30 will give 1, etc.
+    for (unsigned int row = 0; row < 5; row++)
+    {
+        if (cardKeys[column][row] == value)
+        {
+            lastFoundValue[0] = column;
+            lastFoundValue[1] = row;
+            return true;
+        }
+    }
+    return false;
 }

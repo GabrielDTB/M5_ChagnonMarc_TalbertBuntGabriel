@@ -8,31 +8,28 @@
 class BingoCard
 {
     private:
-      short cardKeys[5][5]{};
+      unsigned int cardKeys[5][5]{};
       bool cardValues[5][5] = {{false, false, false, false, false},
                                {false, false, false, false, false},
-                               {false, false, true, false, false},
+                               {false, false, true,  false, false},
                                {false, false, false, false, false},
                                {false, false, false, false, false}};
-      short rowTallies[5] = {0, 0, 0, 0, 0};
-      short columnTallies[5] = {0, 0, 0, 0, 0};
-      short diagonalTallies[2] = {0, 0}; // Element 0 is the top left diagonal
+      unsigned int rowTallies[5] = {0, 0, 1, 0, 0};
+      unsigned int columnTallies[5] = {0, 0, 1, 0, 0};
+      unsigned int diagonalTallies[2] = {1, 1}; // Element 0 is the top left diagonal
+
+      static unsigned int lastFoundValue[2];
+
+      bool searchForValue(unsigned int);
+
     public:
       BingoCard();
 
-      explicit BingoCard(const short[5][5]);
+      explicit BingoCard(const unsigned int[5][5]);
 
-      // C++ doesn't really let us return an array from a function.
-      // We can return a pointer to the array, but we would have to
-      // set the array to static since it would otherwise be local and
-      // get de-referenced.
-      // I don't really want to do that, so I'm going to do something
-      // that is, admittedly, more convoluted, but perfectly functional.
-      short searchForValue(short) const;
+      void markPosition(unsigned int);
 
-      void markPosition(short);
-
-      short getClearedLines() const;
+      unsigned int getClearedLines() const;
 };
 
 
