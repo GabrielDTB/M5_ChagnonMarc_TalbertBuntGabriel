@@ -18,7 +18,7 @@ class BingoCard
       unsigned int columnTallies[5] = {0, 0, 1, 0, 0};
       unsigned int diagonalTallies[2] = {1, 1}; // Element 0 is the top left diagonal
 
-      static unsigned int lastFoundValue[2];
+      unsigned int lastFoundValue[2];
 
       bool searchForValue(unsigned int);
 
@@ -27,7 +27,7 @@ class BingoCard
 
       explicit BingoCard(const unsigned int[5][5]);
 
-      void markPosition(unsigned int);
+      void markValue(unsigned int);
 
       unsigned int getClearedLines() const;
 };
