@@ -1,12 +1,12 @@
 //
 // Created by gabrieltb on 5/5/22.
 //
-
 #include "BingoCard.h"
 #include <cstdlib>
 
-BingoCard::BingoCard()
+BingoCard::BingoCard(BingoGame* b)
 {
+    b->addCardToGame(this);
     unsigned int keyBuffer[5];
     // Generate and assign all the bingo keys
     for (unsigned int column = 0; column < 5; column++)
@@ -38,8 +38,9 @@ BingoCard::BingoCard()
     cardKeys[2][2] = 0;
 }
 
-BingoCard::BingoCard(const unsigned int cardArray[5][5])
+BingoCard::BingoCard(BingoGame* bGame, const unsigned int cardArray[5][5])
 {
+    bGame->addCardToGame(this);
     for (unsigned int column = 0; column < 5; column++)
     {
         for (unsigned int row = 0; row < 5; row++)

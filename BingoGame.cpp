@@ -1,6 +1,7 @@
 #include "BingoGame.h"
 #include "BingoCard.h"
 #include <vector>
+#include <iostream>
 using namespace std;
 
 BingoGame::BingoGame()
@@ -56,13 +57,23 @@ are printed and the game ends.
 */
 void BingoGame::playRound()
 {
+    // caller generates a new (random) value. Caller will assign to BingoGame
     callerPtr->generateCurrentRoundValue();
 
+    // BingoGame displays the Caller's number
+
+    // BingoGame iterates over each BingoCard in cardsInPlay, and calls each card's displayCard method
+
+    // 
 
 }
 
 int BingoGame::checkForWin()
 {
+
+    for (BingoCard* x : cardsInPlay) {
+        std::cout << "\ncleared lines: " << x->getClearedLines();
+    }
 
     return 1;
 

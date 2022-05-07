@@ -4,6 +4,8 @@
 #include "BingoCard.h"
 #include "Caller.h"
 
+class BingoCard;
+
 class BingoGame
 {
     private:
@@ -15,8 +17,8 @@ class BingoGame
         BingoGame();                                                    // constructor
         ~BingoGame();                                                   // destructor, deletes pointers to Caller and BingoCards
         int numCardsInPlay;                                             // int to track number of BingoCards associated with the BingoGame
-        void addCardToGame(BingoCard*);                                 // function to add BingoCard to BingoGame (via  vector of pointers to the cards)
-        //void assignCallerToBingoGame(Caller*);                          // function called in Caller construction to assign Caller to callerPtr
+        void addCardToGame(BingoCard*);                                           // function to add BingoCard to BingoGame (via  vector of pointers to the cards)
+        //void assignCallerToBingoGame(Caller*);                        // function called in Caller construction to assign Caller to callerPtr
         friend void Caller::assignCallerToBingoGame();                  // friend function that sets callerPtr when Caller is initialized
         friend void Caller::setCurrentRoundValue();                     // friend function allowing Caller to set currentRoundVal
         int getCurrentRoundValue();                                     // return current round value (which was updated by Caller)

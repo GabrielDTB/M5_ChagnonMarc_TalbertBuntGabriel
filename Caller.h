@@ -15,7 +15,7 @@ class Caller
         ~Caller();                                          // destructor deletes pointer to BingoGame
         void generateCurrentRoundValue();                    // caller generates current round value (between 1,75 inclusive)
         void setCurrentRoundValue();                        // assigns current round value to BingoGame
-        void test();
+        void assignCallerToBingoGame();
 
 
 
