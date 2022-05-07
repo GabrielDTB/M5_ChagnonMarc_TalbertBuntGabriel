@@ -10,7 +10,7 @@ Caller::Caller(BingoGame *game)
 {
     bingoGamePtr = game;
     // game->assignCallerToBingoGame(this);
-    test();
+    assignCallerToBingoGame();
     // initialize ever element of numsCalledArr to 0. As game is played, each element will be updated to
     //  the round's number.
     for (int i= 0; i < 75; i++) {
@@ -25,7 +25,7 @@ Caller::~Caller()
     bingoGamePtr = nullptr;
 }
 
-void Caller::test()
+void Caller::assignCallerToBingoGame()
 {
     bingoGamePtr->callerPtr = this;
 }

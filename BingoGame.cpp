@@ -12,21 +12,25 @@ BingoGame::BingoGame()
 
 BingoGame::~BingoGame()
 {
+    callerPtr->~Caller();
     delete callerPtr;
     callerPtr = nullptr;
 
     // check if any BingoCards still exist; if so, call each card's destructor
+    
     /*
     if (cardsInPlay.size() > 0) {
+
 
     }
     */
 }
-
+/*
 void BingoGame::assignCallerToBingoGame(Caller* c)
 {
     callerPtr = c;
 }
+*/
 
 void BingoGame::addCardToGame(BingoCard* bCard)
 {

@@ -13,6 +13,9 @@ int main() {
     Caller caller1 = Caller(&game1);
     // caller1.generateCurrentRoundValue();
 
+    // create BingoCards
+    
+
     for (int i = 0; i < 10; i++) {
         cout << "\nplaying round " << (i + 1) << ".\n";
         game1.playRound();
