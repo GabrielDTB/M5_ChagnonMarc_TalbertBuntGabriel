@@ -122,14 +122,14 @@ void displayBingoCardsInGame(BingoGame *bGame, bool displayWinnersOnly)
 
 void displayNumbersCalled(Caller *callerPtr)
 {
-    for (int i = 0; i < callerPtr->ARR_SIZE; i++)
+    for (int i = 0; i < Caller::ARR_SIZE; i++)
     {
         if (callerPtr->numsCalledArr[i] != 0)
         {
             cout << callerPtr->numsCalledArr[i] << " ";
         } else
         {
-            i = callerPtr->ARR_SIZE;
+            i = Caller::ARR_SIZE;
         }
     }
 }
