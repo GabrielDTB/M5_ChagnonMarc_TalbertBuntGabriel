@@ -4,7 +4,9 @@
 
 #ifndef BINGOCARD_H
 #define BINGOCARD_H
+
 #include "BingoGame.h"
+
 class BingoGame;
 
 class BingoCard
@@ -29,7 +31,6 @@ class BingoCard
       explicit BingoCard(BingoGame *, const unsigned int[5][5]);
 
       void markValue(unsigned int);
-
       unsigned int getClearedLines() const;
 
       friend void printBingoCard(BingoCard &);

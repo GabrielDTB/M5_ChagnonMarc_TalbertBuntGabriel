@@ -7,13 +7,12 @@
 
 using namespace std;
 
-BingoCard::BingoCard(BingoGame* b)
+BingoCard::BingoCard(BingoGame *b)
 {
     // Set up the random number generator
     random_device rd;
     mt19937 gen(rd());
 
-    unsigned int keyBuffer[5];
     // Generate and assign all the bingo keys
     for (unsigned int column = 0; column < 5; column++)
     {
@@ -82,8 +81,9 @@ BingoCard::BingoCard(BingoGame* b)
     b->addCardToGame(this);
 }
 
-BingoCard::BingoCard(BingoGame* bGame, const unsigned int cardArray[5][5])
+BingoCard::BingoCard(BingoGame *bGame, const unsigned int cardArray[5][5])
 {
+    // Insert all the keys from the input array into cardKeys
     for (unsigned int column = 0; column < 5; column++)
     {
         for (unsigned int row = 0; row < 5; row++)
