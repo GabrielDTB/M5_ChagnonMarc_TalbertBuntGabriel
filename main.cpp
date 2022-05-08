@@ -26,7 +26,8 @@ int main()
     BingoCard bcard3(&game1);
 
     numWinners = 0;
-    for (gameRound = 1; gameRound < 76; gameRound++) {
+    for (gameRound = 1; gameRound < 76; gameRound++)
+    {
         cout << "\nRound " << gameRound << "! Caller's number is.... ";
         game1.playRound();
         cout << game1.getCurrentRoundValue() << "!";
@@ -42,15 +43,19 @@ int main()
         */
     }
 
-    if (numWinners > 0) {
+    if (numWinners > 0)
+    {
         cout << "\nWe have ";
-        if (numWinners == 1) {
+        if (numWinners == 1)
+        {
             cout << "a winner! Here is the winning card:\n";
-        } else {
+        } else
+        {
             cout << numWinners << " winners! Here are the winning cards:\n";
         }
         displayBingoCardsInGame(&game1, true);
-    } else {
+    } else
+    {
         cout << "\nUnforunately, there were no winners.";
     }
     cout << "\nHere are the numbers called by the Caller:" << endl;
@@ -73,11 +78,7 @@ void printBingoCard(BingoCard &card)
             if (card.cardValues[column][row])
             {
                 cout << RED_BACKGROUND_CODE;
-            } else
-            {
-                cout << NORMAL_CODE;
             }
-
             cout << " " << left << setw(2) << card.cardKeys[column][row] << NORMAL_CODE;
         }
         cout << endl;
@@ -98,28 +99,37 @@ void printBingoCard(BingoCard &card)
 
 // function to handle printing all BingoCards (iterates over BingoGame's cardsInPlay member)
 void displayBingoCardsInGame(BingoGame *bGame, bool displayWinnersOnly)
-{   if (displayWinnersOnly) {
-        for (BingoCard *g : bGame->cardsInPlay) {
-            if (g->getClearedLines() > 0) {
+{
+    if (displayWinnersOnly)
+    {
+        for (BingoCard *g: bGame->cardsInPlay)
+        {
+            if (g->getClearedLines() > 0)
+            {
                 cout << "\n";
                 printBingoCard(*g);
             }
         }
-    } else {
-        for (BingoCard *g : bGame->cardsInPlay) {
-        cout << "\n";
-        printBingoCard(*g);
+    } else
+    {
+        for (BingoCard *g: bGame->cardsInPlay)
+        {
+            cout << "\n";
+            printBingoCard(*g);
         }
     }
 }
 
-void displayNumbersCalled(Caller* callerPtr)
+void displayNumbersCalled(Caller *callerPtr)
 {
-    for (int i = 0; i < callerPtr->ARR_SIZE; i++) {
-        if (callerPtr->numsCalledArr[i] != 0) {
-            cout << callerPtr->numsCalledArr[i] <<  " ";
-        } else {
+    for (int i = 0; i < callerPtr->ARR_SIZE; i++)
+    {
+        if (callerPtr->numsCalledArr[i] != 0)
+        {
+            cout << callerPtr->numsCalledArr[i] << " ";
+        } else
+        {
             i = callerPtr->ARR_SIZE;
         }
-    }   
+    }
 }
