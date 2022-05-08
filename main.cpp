@@ -81,7 +81,7 @@ void printBingoCard(BingoCard &card)
             }
             cout << " " << left << setw(2) << card.cardKeys[column][row] << NORMAL_CODE;
         }
-        cout << endl;
+        cout << NORMAL_CODE << endl;
     }
     /* for testing, can delete once we figure out why red background persists across row
     cout << endl;
