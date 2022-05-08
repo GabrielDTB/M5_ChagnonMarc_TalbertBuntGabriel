@@ -28,12 +28,10 @@ class BingoCard
 
     public:
       BingoCard(BingoGame *);
-      explicit BingoCard(BingoGame *, const unsigned int[5][5]);
-
-      void markValue(unsigned int);
-      unsigned int getClearedLines() const;
-
-      friend void printBingoCard(BingoCard &);
+      explicit BingoCard(BingoGame *, const unsigned int[5][5]);          // Constructor with 
+      void markValue(unsigned int);                                       // Function to "mark" the BingoCard
+      unsigned int getClearedLines() const;                               // Function returns whether any of the private member tallies sum to 5 (ie a win)
+      friend void printBingoCard(BingoCard &);                            // Friend function allows main to print BingoCards.
 };
 
 

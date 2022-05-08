@@ -7,7 +7,8 @@ using namespace std;
 
 BingoGame::BingoGame()
 {
-    vector<BingoCard *> cardsInPlay;
+    vector<BingoCard *> cardsInPlay(0);
+    numCardsInPlay = 0;
     callerPtr = nullptr;
 
 }
@@ -15,31 +16,20 @@ BingoGame::BingoGame()
 BingoGame::~BingoGame()
 {
     callerPtr->~Caller();
-    delete callerPtr;
     callerPtr = nullptr;
 
     // check if any BingoCards still exist; if so, call each card's destructor
-
-    /*
     if (cardsInPlay.size() > 0) {
-
-
+        for (BingoCard *b : cardsInPlay) {
+            b->~BingoCard();
+        }
     }
-    */
 }
-
-/*
-void BingoGame::assignCallerToBingoGame(Caller* c)
-{
-    callerPtr = c;
-}
-*/
 
 void BingoGame::addCardToGame(BingoCard *bCard)
 {
     cardsInPlay.push_back(bCard);
     numCardsInPlay += 1;
-
     return;
 }
 
@@ -54,33 +44,34 @@ one BingoCard is associated with the BingoGame. Then, it calls the Caller, who g
 the next round's number, passes it back to BingoGame. BingoGame then passes the number
 to all associated BingoCards. Each BingoCard is responsible for updating its 5 x 5 panel
 and checking if it won on that round.
-BingoGame then 'asks' each BingoCard if it was a winner. If there are winners, their BingoCards
-are printed and the game ends.
 */
 void BingoGame::playRound()
 {
+    if (callerPtr == nullptr || numCardsInPlay < 1) {
+        cout << "\nGame is not correctly set up (either missing a caller or any Bingo Cards). " <<
+        "Please resolve setup then rerun this program.";
+        exit (EXIT_FAILURE);
+    }
     // caller generates a new (random) value. Caller will assign to BingoGame
     callerPtr->generateCurrentRoundValue();
 
-    // BingoGame displays the Caller's number
-
-    // BingoGame iterates over each BingoCard in cardsInPlay, and calls each card's displayCard method
+    // BingoGame iterates over each BingoCard in cardsInPlay, and passes the round's number to the cards.
     for (BingoCard *bCard: cardsInPlay)
     {
         bCard->markValue(getCurrentRoundValue());
     }
-    // 
-
+        return;
 }
 
+// returns the number of winners (value could be in range [0,numCardsInPlay])
 int BingoGame::checkForWin()
 {
-
-    for (BingoCard *x: cardsInPlay)
+    int numWinners = 0;
+    for (BingoCard *bCard: cardsInPlay)
     {
-        std::cout << "\ncleared lines: " << x->getClearedLines();
+        if (bCard->getClearedLines() > 0) {
+            numWinners += 1;
+        }
     }
-
-    return 1;
-
+    return numWinners;
 }
