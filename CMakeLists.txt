@@ -3,4 +3,4 @@ project(M5_ChagnonMarc_TalbertBuntGabriel)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(M5_ChagnonMarc_TalbertBuntGabriel main.cpp BingoCard.cpp BingoCard.h)
+add_executable(M5_ChagnonMarc_TalbertBuntGabriel main.cpp BingoCard.cpp BingoCard.h BingoGame.cpp BingoGame.h Caller.cpp Caller.h)

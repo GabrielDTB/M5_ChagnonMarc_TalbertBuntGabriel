@@ -4,6 +4,8 @@
 
 #ifndef BINGOCARD_H
 #define BINGOCARD_H
+#include "BingoGame.h"
+class BingoGame;
 
 class BingoCard
 {
@@ -23,9 +25,8 @@ class BingoCard
       bool searchForValue(unsigned int);
 
     public:
-      BingoCard();
-
-      explicit BingoCard(const unsigned int[5][5]);
+      BingoCard(BingoGame *);
+      explicit BingoCard(BingoGame *, const unsigned int[5][5]);
 
       void markValue(unsigned int);
 

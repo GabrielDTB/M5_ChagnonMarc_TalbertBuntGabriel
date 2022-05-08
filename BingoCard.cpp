@@ -7,12 +7,13 @@
 
 using namespace std;
 
-BingoCard::BingoCard()
+BingoCard::BingoCard(BingoGame* b)
 {
     // Set up the random number generator
     random_device rd;
     mt19937 gen(rd());
 
+    unsigned int keyBuffer[5];
     // Generate and assign all the bingo keys
     for (unsigned int column = 0; column < 5; column++)
     {
@@ -70,18 +71,19 @@ BingoCard::BingoCard()
             keyBuffer[smallestIndex] = 0;
         }
     }
-    // Finally, assign the middle square as free
-    cardKeys[2][2] = 0;
+    // Finally, assign the middle square as free.
     // Doing it this way produces an uneven
     // distribution in the N column numbers
     // (the middle numbers are cut out more often
     // while the edge numbers can't be cut out)
     // but it doesn't really matter that much.
+    cardKeys[2][2] = 0;
+
+    b->addCardToGame(this);
 }
 
-BingoCard::BingoCard(const unsigned int cardArray[5][5])
+BingoCard::BingoCard(BingoGame* bGame, const unsigned int cardArray[5][5])
 {
-    // Copy all the keys from the input card array into the bingo card
     for (unsigned int column = 0; column < 5; column++)
     {
         for (unsigned int row = 0; row < 5; row++)
@@ -91,6 +93,8 @@ BingoCard::BingoCard(const unsigned int cardArray[5][5])
     }
     // Ensure the center square is 0
     cardKeys[2][2] = 0;
+
+    bGame->addCardToGame(this);
 }
 
 bool BingoCard::searchForValue(unsigned int value)
