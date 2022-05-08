@@ -15,7 +15,6 @@ class BingoGame
     
     public:
         BingoGame();                                                    // Constructor
-        ~BingoGame();                                                   // Destructor, sets to nullptr pointers to Caller and BingoCards
         int numCardsInPlay;                                             // Int to track number of BingoCards associated with the BingoGame
         void addCardToGame(BingoCard*);                                 // Function to add BingoCard to BingoGame (via  vector of pointers to the cards)
         int getCurrentRoundValue();                                     // Return current round value (which was updated by Caller)

@@ -13,19 +13,6 @@ BingoGame::BingoGame()
 
 }
 
-BingoGame::~BingoGame()
-{
-    callerPtr->~Caller();
-    callerPtr = nullptr;
-
-    // check if any BingoCards still exist; if so, call each card's destructor
-    if (cardsInPlay.size() > 0) {
-        for (BingoCard *b : cardsInPlay) {
-            b->~BingoCard();
-        }
-    }
-}
-
 void BingoGame::addCardToGame(BingoCard *bCard)
 {
     cardsInPlay.push_back(bCard);

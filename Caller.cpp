@@ -19,12 +19,6 @@ Caller::Caller(BingoGame *game)
     numsCalledCounter = 0; // updated as each round is played.
 }
 
-Caller::~Caller()
-{
-    delete bingoGamePtr;
-    bingoGamePtr = nullptr;
-}
-
 void Caller::assignCallerToBingoGame()
 {
     bingoGamePtr->callerPtr = this;
