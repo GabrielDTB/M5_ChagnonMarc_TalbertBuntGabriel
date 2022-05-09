@@ -94,67 +94,12 @@
 
 using namespace std;
 
-// A testing version of main
-int testmain()
-{
-    // variable definitions
-    int numBingoCards;
-    int gameRound;
-    int numWinners;
-
-    cout << "\n generating Bingo Game.";
-    BingoGame game1 = BingoGame();
-    cout << "\n generating caller.";
-    Caller caller1 = Caller(&game1, true);
-
-    unsigned int testArray[5][5] = {
-            {1,  2,  3,  4,  5},
-            {16, 18, 20, 22, 24},
-            {31, 34, 37, 40, 43},
-            {50, 51, 56, 57, 60},
-            {61, 65, 67, 69, 75}
-    };
-    cout << "\nThis test will have one players with one Bingo card.";
-    BingoCard bcard1(&game1, testArray);
-
-    numWinners = 0;
-    for (gameRound = 1; gameRound < 76; gameRound++)
-    {
-        cout << "\nRound " << gameRound << "! Caller's number is.... ";
-        game1.playRound();
-        cout << game1.getCurrentRoundValue() << "!";
-        cout << "\nCheck those Bingo Cards:" << endl;
-        displayBingoCardsInGame(&game1, false);
-        cout << endl;
-        numWinners = game1.checkForWin();
-        if (numWinners > 0) gameRound = 76;
-    }
-
-    if (numWinners > 0)
-    {
-        cout << "\nWe have ";
-        if (numWinners == 1)
-        {
-            cout << "a winner! Here is the winning card:\n";
-        } else
-        {
-            cout << numWinners << " winners! Here are the winning cards:\n";
-        }
-        displayBingoCardsInGame(&game1, true);
-    } else
-    {
-        cout << "\nUnforunately, there were no winners.";
-    }
-    cout << "\nHere are the numbers called by the Caller:" << endl;
-    displayNumbersCalled(&caller1);
-
-    return 0;
-}
+int testMain();
 
 int main()
 {
     /* uncomment to test
-    return testmain();
+    return testMain();
     
     */
 
@@ -263,4 +208,61 @@ void displayNumbersCalled(Caller *callerPtr)
             i = Caller::ARR_SIZE;
         }
     }
+}
+
+// A testing version of main
+int testMain()
+{
+    // variable definitions
+    int numBingoCards;
+    int gameRound;
+    int numWinners;
+
+    cout << "\n generating Bingo Game.";
+    BingoGame game1 = BingoGame();
+    cout << "\n generating caller.";
+    Caller caller1 = Caller(&game1, true);
+
+    unsigned int testArray[5][5] = {
+            {1,  2,  3,  4,  5},
+            {16, 18, 20, 22, 24},
+            {31, 34, 37, 40, 43},
+            {50, 51, 56, 57, 60},
+            {61, 65, 67, 69, 75}
+    };
+    cout << "\nThis test will have one players with one Bingo card.";
+    BingoCard bcard1(&game1, testArray);
+
+    numWinners = 0;
+    for (gameRound = 1; gameRound < 76; gameRound++)
+    {
+        cout << "\nRound " << gameRound << "! Caller's number is.... ";
+        game1.playRound();
+        cout << game1.getCurrentRoundValue() << "!";
+        cout << "\nCheck those Bingo Cards:" << endl;
+        displayBingoCardsInGame(&game1, false);
+        cout << endl;
+        numWinners = game1.checkForWin();
+        if (numWinners > 0) gameRound = 76;
+    }
+
+    if (numWinners > 0)
+    {
+        cout << "\nWe have ";
+        if (numWinners == 1)
+        {
+            cout << "a winner! Here is the winning card:\n";
+        } else
+        {
+            cout << numWinners << " winners! Here are the winning cards:\n";
+        }
+        displayBingoCardsInGame(&game1, true);
+    } else
+    {
+        cout << "\nUnforunately, there were no winners.";
+    }
+    cout << "\nHere are the numbers called by the Caller:" << endl;
+    displayNumbersCalled(&caller1);
+
+    return 0;
 }
