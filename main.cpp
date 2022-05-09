@@ -153,6 +153,11 @@ int testmain()
 
 int main()
 {
+    /* uncomment to test
+    return testmain();
+    
+    */
+
     // variable definitions
     int numBingoCards;
     int gameRound;
