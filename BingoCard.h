@@ -7,7 +7,7 @@
 
 #include "BingoGame.h"
 
-class BingoGame;
+class BingoGame; // Necessary forward declaration
 
 class BingoCard
 {
@@ -22,17 +22,18 @@ class BingoCard
       unsigned int columnTallies[5] = {0, 0, 1, 0, 0};
       unsigned int rowTallies[5] = {0, 0, 1, 0, 0};
       unsigned int diagonalTallies[2] = {1, 1}; // Element 0 is the top left diagonal
-      unsigned int lastFoundValue[2]{};
+      unsigned int lastFoundKey[2]{};
 
-      bool searchForValue(unsigned int);
+      bool searchForKey(unsigned int);
 
     public:
       BingoCard(BingoGame *);
-      explicit BingoCard(BingoGame *, const unsigned int[5][5]);          // Constructor with 
-      void markValue(unsigned int);                                       // Function to "mark" the BingoCard
-      unsigned int getClearedLines() const;                               // Function returns whether any of the private member tallies sum to 5 (ie a win)
-      friend void printBingoCard(BingoCard &);                            // Friend function allows main to print BingoCards.
-};
+      explicit BingoCard(BingoGame *, const unsigned int[5][5]);
+      
+      void markValue(unsigned int);
+      unsigned int getClearedLines() const;
 
+      friend void printBingoCard(BingoCard &);
+};
 
 #endif //BINGOCARD_H

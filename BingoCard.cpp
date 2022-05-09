@@ -7,6 +7,11 @@
 
 using namespace std;
 
+/**
+ * Constructor that generates random values for the bingo card
+ * and assigns itself to the passed in BingoGame.
+ * @param b BingoGame to assign itself to
+ */
 BingoCard::BingoCard(BingoGame *b)
 {
     // Set up the random number generator
@@ -81,6 +86,12 @@ BingoCard::BingoCard(BingoGame *b)
     b->addCardToGame(this);
 }
 
+/**
+ * Constructor that assigns passed in values to the bingo card
+ * and assigns the card to a passed in bingo game.
+ * @param bGame the bingo game it gets assigned to
+ * @param cardArray the array of keys that get put in
+ */
 BingoCard::BingoCard(BingoGame *bGame, const unsigned int cardArray[5][5])
 {
     // Insert all the keys from the input array into cardKeys
@@ -97,30 +108,41 @@ BingoCard::BingoCard(BingoGame *bGame, const unsigned int cardArray[5][5])
     bGame->addCardToGame(this);
 }
 
-bool BingoCard::searchForValue(unsigned int value)
+/**
+ * Searches whether a key exists in the bingo card keys.
+ * Updates the last found key variable if it finds it.
+ * @param key the key to search for
+ * @return true if it was found, false if not
+ */
+bool BingoCard::searchForKey(unsigned int key)
 {
-    // Find the proper column to search for the value
-    unsigned int column = (value - 1) / 15;
+    // Find the proper column to search for the key
+    unsigned int column = (key - 1) / 15;
 
-    // Search for the value
+    // Search for the key
     for (unsigned int row = 0; row < 5; row++)
     {
-        if (cardKeys[column][row] == value)
+        if (cardKeys[column][row] == key)
         {
-            lastFoundValue[0] = column;
-            lastFoundValue[1] = row;
+            lastFoundKey[0] = column;
+            lastFoundKey[1] = row;
             return true;
         }
     }
     return false;
 }
 
-void BingoCard::markValue(unsigned int value)
+/**
+ * Marks the corresponding value for a key if it exists in the list of keys.
+ * Basically marks the bingo card square if it matches.
+ * @param key the key to search for
+ */
+void BingoCard::markValue(unsigned int key)
 {
-    if (searchForValue(value))
+    if (searchForKey(key))
     {
-        unsigned int column = lastFoundValue[0];
-        unsigned int row = lastFoundValue[1];
+        unsigned int column = lastFoundKey[0];
+        unsigned int row = lastFoundKey[1];
 
         // Mark the value
         cardValues[column][row] = true;
@@ -138,6 +160,10 @@ void BingoCard::markValue(unsigned int value)
     }
 }
 
+/**
+ * Totals up the cleared lines from the columns, rows, and diagonals.
+ * @return the total number of cleared lines
+ */
 unsigned int BingoCard::getClearedLines() const
 {
     unsigned int clearedLines = 0;
