@@ -153,7 +153,7 @@ void BingoCard::markValue(unsigned int key)
         if (column == row)
         {
             diagonalTallies[0]++;
-        } else if (column + row == 6)
+        } else if (column + row == 5)
         {
             diagonalTallies[1]++;
         }
